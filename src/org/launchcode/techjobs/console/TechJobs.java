@@ -3,6 +3,7 @@ package org.launchcode.techjobs.console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -61,12 +62,14 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
             }
         }
+
+
     }
 
     // ﻿Returns the key of the selected item from the choices Dictionary
@@ -76,8 +79,7 @@ public class TechJobs {
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
-        // Put the choices in an ordered structure so we can
-        // associate an integer with each one
+        // Put the choices in an ordered structure so we can associate an integer with each one
         Integer i = 0;
         for (String choiceKey : choices.keySet()) {
             choiceKeys[i] = choiceKey;
@@ -111,6 +113,24 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        boolean validSearch = false;
+
+        //iterate over an ArrayList of jobs, each job itself a Hashmap
+        //think about creating a nested loop to loop over each HashMap
+
+        for (HashMap<String, String> jobs : someJobs) {
+            System.out.println("**********");
+            for (Map.Entry<String, String> job : jobs.entrySet()) {
+                validSearch = true;
+                System.out.println(job.getKey() + ": " + job.getValue());
+            }
+            System.out.println("**********");
+        }
+
+        if(validSearch == false){System.out.println("I'm sorry, we have no results matching your request.");}
+
+        //if a new field is added to the jobs records, this approach will print out the new field without any updates to printJobs
+
+
     }
 }
