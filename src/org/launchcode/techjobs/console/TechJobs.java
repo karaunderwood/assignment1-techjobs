@@ -113,18 +113,19 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
+        // The flag
         boolean validSearch = false;
 
         //iterate over an ArrayList of jobs, each job itself a Hashmap
         //think about creating a nested loop to loop over each HashMap
 
         for (HashMap<String, String> jobs : someJobs) {
-            System.out.println("**********");
+            System.out.println("\n********");
             for (Map.Entry<String, String> job : jobs.entrySet()) {
                 validSearch = true;
                 System.out.println(job.getKey() + ": " + job.getValue());
             }
-            System.out.println("**********");
+            System.out.println("********");
         }
 
         if(validSearch == false){System.out.println("I'm sorry, we have no results matching your request.");}
